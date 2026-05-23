@@ -99,9 +99,9 @@ en tu navegador favorito.
 
 Al iniciar el sistema se muestra un panel principal dividido en secciones para gestionar estudiantes, rutas y asignaciones.
 
-```md
-![Inicio del sistema](./img/inicio.png)
-```
+
+![Inicio del sistema](/img/inicio.png)
+
 
 ### En esta vista encontramos:
 
@@ -114,11 +114,9 @@ Al iniciar el sistema se muestra un panel principal dividido en secciones para g
 
 El sistema permite agregar estudiantes mediante un formulario dinámico.
 
-```md
-![Gestión de estudiantes](./img/lista-estudiantes-rutas.png)
+![Gestión de estudiantes](/img/lista-estudiantes-rutas.png)
 
-![Gestión de estudiantes](./img/estudiante-nuevo.png)
-```
+![Gestión de estudiantes](/img/estudiante-nuevo.png)
 
 ## Funcionalidades:
 
@@ -144,11 +142,11 @@ El sistema permite agregar estudiantes mediante un formulario dinámico.
 
 Las rutas escolares pueden crearse dinámicamente desde la interfaz.
 
-```md
-![Gestión de rutas](./img/lista-estudiantes-rutas.png)
 
-![Gestión de rutas](./img/ruta-nueva.png)
-```
+![Gestión de rutas](/img/lista-estudiantes-rutas.png)
+
+![Gestión de rutas](/img/ruta-nueva.png)
+
 
 ## Información registrada:
 
@@ -170,9 +168,9 @@ Las rutas escolares pueden crearse dinámicamente desde la interfaz.
 
 El sistema genera automáticamente tarjetas dinámicas de conductores usando renderizado con JavaScript.
 
-```md
-![Tarjetas de conductores](./img/ocultar-rutas.png)
-```
+
+![Tarjetas de conductores](/img/ocultar-rutas.png)
+
 
 ## Características:
 
@@ -187,9 +185,9 @@ El sistema genera automáticamente tarjetas dinámicas de conductores usando ren
 
 Los estudiantes pueden ser asignados a rutas específicas.
 
-```md
-![Asignaciones](./img/rutas-seguras.png)
-```
+
+![Asignaciones](/img/rutas-seguras.png)
+
 
 ## El sistema permite:
 
@@ -204,9 +202,9 @@ Los estudiantes pueden ser asignados a rutas específicas.
 
 El proyecto consume la API pública de OpenWeather utilizando `fetch` y `async/await`.
 
-```md
-![API del clima](./img/api.png)
-```
+
+![API del clima](/img/api.png)
+
 
 ## Información mostrada:
 
