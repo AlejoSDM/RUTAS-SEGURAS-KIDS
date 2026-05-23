@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Rutas Seguras Kids</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+ 
+ 
+ 
+<body>
+ 
+ 
+    <header class="header">
+ 
+    <div>
+ 
+        <h1 id="Tp">
+            RUTAS SEGURAS KIDS
+        </h1>
+        <p id="dp">
+            Sistema de gestión de rutas escolares
+        </p>
+    </div>
+        <weather-card></weather-card>
+    </header>
+ 
+ 
+ 
+ 
+    <div class="container">
+ 
+        <!-- ESTUDIANTES -->
+        <section id="EST" class="section">
+ 
+            <h1>ESTUDIANTES</h1>
+ 
+            <button id="btnNuevo">
+                + Nuevo Estudiante
+            </button>
+ 
+ 
+            <div class="table-scroll">
+            <table>
+ 
+                <thead>
+ 
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Grado</th>
+                        <th>Telefono</th>
+                        <th>Acudiente</th>
+                        <th>Acciones</th>
+                    </tr>
+ 
+                </thead>
+ 
+                <tbody id="tbody"></tbody>
+ 
+            </table>
+            </div>
+        </section>
+ 
+ 
+        <section class="section">
+ 
+          <h1>RUTAS</h1>
+ 
+          <button id="btnRutas">
+              + Nueva Ruta
+          </button>
+ 
+          <div class="table-scroll">
+          <table>
+ 
+              <thead>
+ 
+                  <tr>
+                      <th>Nombre Ruta</th>
+                      <th>Conductor</th>
+                      <th>Email</th>
+                      <th>Tiempo</th>
+                      <th>Acciones</th>
+                  </tr>
+ 
+              </thead>
+ 
+              <tbody id="tbodyR"></tbody>
+ 
+          </table>
+          </div>
+      </section>
+ 
+      <!-- MODAL -->
+    <div id="modalR" class="modalR">
+ 
+      <div class="modal-content">
+ 
+          <h2>INFORMACION DEL CONDUCTOR</h2>
+ 
+          <form id="formR">
+ 
+              <input
+                  type="text"
+                  id="nombreR"
+                  placeholder="Nombre de la ruta"
+                  required
+              >
+ 
+              <input
+                  type="text"
+                  id="conductorNombre"
+                  placeholder="Nombre del conductor"
+                  required
+              >
+ 
+              <input
+                  type="email"
+                  id="email"
+                  placeholder="Email del conductor"
+                  required
+              >
+                <hr>
+                <input type="time" id="tiempoSalida" name="hora-cita" min="13:00" max="22:00">
+ 
+              <hr>
+ 
+              <div class="acciones-modal">
+ 
+                  <button type="submit" id="guardarR">
+                      Guardar
+                  </button>
+ 
+                  <button type="button" id="cerrarR">
+                      Cancelar
+                  </button>
+ 
+              </div>
+ 
+          </form>
+ 
+      </div>
+ 
+  </div>
+ 
+        <!-- RUTAS -->
+        <section id="RUT" class="section">
+            <h1>RUTAS SEGURAS KIDS</h1>
+            <h2>AGREGA TU ESTUDIANTE A LA RUTA</h2>
+            <button id="btnCargarUsuarios">
+                Cargar conductores
+            </button>
+ 
+            <ul id="listaUsuarios"></ul>
+ 
+            <hr>
+ 
+            <h2>Asignaciones</h2>
+ 
+            <ul id="listaTareas"></ul>
+ 
+            <button id="btnLimpiar">
+                Limpiar todo
+            </button>
+ 
+        </section>
+ 
+    </div>
+ 
+ 
+    <!-- MODAL -->
+    <div id="modalE" class="modalE">
+ 
+        <div class="modal-content">
+ 
+            <h2>INFORMACION DEL ESTUDIANTE</h2>
+ 
+            <form id="form">
+ 
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Nombre"
+                    required
+                >
+ 
+                <input
+                    type="number"
+                    id="edad"
+                    placeholder="Edad"
+                    required
+                >
+ 
+                <input
+                    type="text"
+                    id="grado"
+                    placeholder="Grado"
+                    required
+                >
+ 
+                <input
+                    type="number"
+                    id="telefono"
+                    placeholder="Telefono del acudiente"
+                    required
+                >
+ 
+                <input
+                    type="text"
+                    id="acudiente"
+                    placeholder="Nombre del acudiente"
+                    required
+                >
+ 
+                <hr>
+ 
+                <div class="acciones-modal">
+ 
+                    <button type="submit">
+                        Guardar
+                    </button>
+ 
+                    <button type="button" id="cerrar">
+                        Cancelar
+                    </button>
+ 
+                </div>
+ 
+            </form>
+ 
+        </div>
+ 
+    </div>
+ 
+ 
+    <script src="/solicitudes.js"></script>
+ 
+</body>
+ 
+</html>
