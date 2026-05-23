@@ -460,9 +460,10 @@ btnLimpiar.addEventListener("click", ()=>{
      const evento = new CustomEvent("asignacionesLimpiadas", {
         detail: { mensaje: "Todas las asignaciones fueron eliminadas" }
     });
+    //esto manda el evento como si fuera una carta
     document.dispatchEvent(evento);
 })
-
+//aca lo recibe y escribe en la consola y en el alert como funcionalidad del evento
 document.addEventListener("asignacionesLimpiadas", (e) => {
     console.log("🧹 Custom Event recibido:", e.detail.mensaje);
     alert("Todas las asignaciones fueron eliminadas 🧹")
