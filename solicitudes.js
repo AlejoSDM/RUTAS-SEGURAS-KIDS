@@ -6,6 +6,7 @@
 let estudiantes = JSON.parse(localStorage.getItem("estudiantes")) || [];
 let asignaciones = JSON.parse(localStorage.getItem("asignaciones")) || [];
 let Rutas = JSON.parse(localStorage.getItem("Rutas")) || [];
+let asis = JSON.parse(localStorage.getItem("asis")) || [];
 let editId = null;
 let editIdR = null;
  
@@ -42,6 +43,8 @@ const tiempo = document.getElementById("tiempoSalida");
    REFERENCIAS AL DOM — ASIGNACIONES Y UTILIDADES
    ============================================================ */
 const ListaUsuarios = document.getElementById("listaUsuarios");
+const ListaAsistencia = document.getElementById("listaAsistencia");
+const listaGuardadoAsistencia = document.getElementById("listaGuardadoAsistencia");
 const listaEstudiantes = document.getElementById("listaTareas");
 const form = document.getElementById("form");
 const btnLimpiar = document.getElementById("btnLimpiar");
@@ -55,6 +58,7 @@ function guardar() {
     localStorage.setItem("estudiantes", JSON.stringify(estudiantes));
     localStorage.setItem("asignaciones", JSON.stringify(asignaciones));
     localStorage.setItem("Rutas", JSON.stringify(Rutas));
+    localStorage.setItem("asis", JSON.stringify(asis));
 }
  
  
@@ -345,6 +349,30 @@ listaEstudiantes.addEventListener("click", (e) => {
     }
 });
  
+function renderEstudiantesAsistencia() {
+    listaGuardadoAsistencia.innerHTML = "";
+    //INDEX ES EL SEGUNDO PARAMETRO DE FOREACH Y NOS PERMITE SABER EN QUE POSICION DEL ARREGLO ESTAMOS,
+    //LO USAMOS PARA PODER ELIMINAR LA ASIGNACION CORRECTA CUANDO SE HAGA CLICK EN EL BOTON DE ELIMINAR
+    asis.forEach((asis, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            ${asis.nombre} GUARDO SU ASISTENCIA EN LA RUTA DEL CONDUCTOR ${asis.nombreConductor}
+            <button data-index="${index}" class="eliminar">
+                X
+            </button>
+        `;
+        listaGuardadoAsistencia.appendChild(li);
+    });
+}
+ 
+listaGuardadoAsistencia.addEventListener("click", (e) => {
+    if (e.target.classList.contains("eliminar")) {
+        const index = Number(e.target.dataset.index);
+        asis.splice(index, 1);
+        guardar();
+        renderEstudiantesAsistencia();
+    }
+});
  
 /* ============================================================
    MÓDULO CONDUCTORES (CARDS) — Render y asignación
@@ -364,6 +392,10 @@ function renderUsers() {
  
         const opcionesEstudiantes = estudiantes.map(estudiante => `
             <option value="${estudiante.id}">${estudiante.nombre}</option>
+        `).join("");
+
+        const asistencia = asignaciones.map(asignacion=> `
+            <option value="${asignacion.id}">${asignacion.nombre}</option>
         `).join("");
  
         li.innerHTML = `
@@ -404,6 +436,15 @@ function renderUsers() {
                     <button data-name="${user.conductor_Nombre}" class="agregarUser user-card__btn">
                         ＋ Asignar a la ruta
                     </button>
+                
+                    <label class="user-card__select-label">👦 GUARDAR ASISTENCIA</label>
+                    <select name="estudiantes" id="estudiantes" class="user-card__select">
+                        ${asistencia}
+                    </select>
+                    <button data-name="${user.conductor_Nombre}" class="agregarAsistencia user-card__btn">
+                        ＋ GUARDAR ASISTENCIA
+                    </button>
+        
                 </div>
  
             </div>
@@ -447,7 +488,33 @@ ListaUsuarios.addEventListener("click", (e) => {
         }
     }
 });
+
+ListaUsuarios.addEventListener("click", (e) => {
+    if (e.target.classList.contains("agregarAsistencia")) {
+        /**ESTE BOTON GUARDA EL NOMBRE DEL CONDUCTOR AL QUE SE LE HIZO CLICK*/
+        const nombreConductor = e.target.dataset.name;
+        /*ACCEDEMOS AL SELECT QUE TIENE LOS NOMBRES Y ENTRAMOS A LA Q SE LE HIZO CLICK*/ 
+        const select = e.target.parentElement.querySelector("select");
+        /*DEVUELVE EL ID DE LA OPCION SELECCIONADA EN EL DEL SELECT*/ 
+        const estudianteId = Number(select.value);
+        /**BUSCA EL ID QUE COINCIDE CON EL DEL SELECT Y OBTIENE TODOS SUS DATOS EN ESTE CASO DEL ESTUDIANTE */
+        const estudiante = estudiantes.find(est => est.id === estudianteId);
+        /**SI ENCUENTRA AL ESTUDIANTE LE MANDA A ASIGNACIONES UN TEXTO */
+        if (estudiante) {
  
+            asis.push({
+                idEstudiante: estudiante.id,
+                nombre: estudiante.nombre,
+                nombreConductor: nombreConductor
+            });
+ 
+            guardar();
+            renderEstudiantesAsignados();
+        }
+    }
+});
+ 
+
  
 /* ============================================================
    MÓDULO UTILIDADES — Botones generales
@@ -490,6 +557,7 @@ btnCargar.addEventListener("click", function(){
 render(estudiantes); //MUESTRA ESTUDIANTES
 renderRutas(Rutas); //MUESTRA RUTAS
 renderEstudiantesAsignados(); //MUESTRA LAS ASIGNACIONES DE ESTUDIANTES A RUTAS
+renderEstudiantesAsistencia(); //MUESTRA LAS ASISTENCIAS GUARDADAS
  
  
 /* ============================================================
